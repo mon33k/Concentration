@@ -18,10 +18,15 @@ const symbols = {
 
 // Find way to only display the back and when you click one only two cards open at a time
 
+// iterate through each card div and add another div element that will be visible upon window load
+// maybe we can hev the back cards render first and then add innerHTML of the symbol for each card
 
 function symbolsFunc () {
+    
     card.forEach((e) => {
-        console.log(e.innerHTML)
+        e.addEventListener( 'click', function() {
+            e.classList.toggle('is-flipped');
+        })
     })
 }
 
