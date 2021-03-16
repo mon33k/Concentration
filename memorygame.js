@@ -1,6 +1,6 @@
 // Grab all the elements on the board 
 let board = document.querySelector('.game-container');
-let card = document.querySelectorAll('.card');
+let allCards = document.querySelectorAll('.card');
 
 // Find a way to store, randomize, and insert the value for symbols on each card
 const symbols = {
@@ -16,39 +16,65 @@ const symbols = {
  
 // Hardcode the values for the cards for now 
 
-// Find way to only display the back and when you click one only two cards open at a time
-// add interval for how long two is displayed at a time and flips when it is not a match
+// Only two cards open at a time
+let firstCard;
+let secondCard;
 
-// iterate through each card div and add another div element that will be visible upon window load
-// maybe we can hev the back cards render first and then add innerHTML of the symbol for each card
-let timesClicked = 0
+// Interval for how long two is displayed at a time and flips when it is not a match
+let intervalFlip;
 
-function symbolsFunc () {
-    let temp = []
-    card.forEach((e, i) => {
-        e.addEventListener( 'click', function() {
-            timesClicked++
-            // console.log(e.classList.value.includes('is-flipped'))
-          //  let prev = e[i].querySelector('.frontCard').innerHTML
-            console.log('e', e)
-            temp.push(e.querySelector('.frontCard').innerHTML)
-            e.classList.toggle('is-flipped')
-            if(timesClicked > 1) {
-               console.log(temp.length)
-                if(temp[0] === temp[1]) {
-                    e.classList.add('is-flipped');
-                    temp = 0
-                } else {
-                    e.classList.remove('is-flipped');
-                    console.log('not a match')
-                }
-                // console.log(e.querySelector('.frontCard'))
 
+
+function toggleCards() {
+  
+    allCards.forEach((card, i) => {
+        card.addEventListener( 'click', function() {
+           
+            card.classList.toggle('is-flipped')
+            if(!firstCard) {
+                firstCard = card 
+            } else {
+                secondCard = card 
+               checkForMatch()
             }
 
         })
     })
 }
 
-symbolsFunc()
-console.log(timesClicked)
+
+function checkForMatch() {   
+    let firstChild = firstCard.querySelector('.frontCard')
+    let secondChild = secondCard.querySelector('.frontCard')
+   
+
+        if(firstChild.innerHTML === secondChild.innerHTML) {
+            
+            firstCard.classList.add('is-flipped')
+            secondCard.classList.add('is-flipped')
+           
+            firstCard = undefined
+            secondCard = undefined
+
+        } else {
+            
+            delayFlipUnmatched(firstCard, secondCard)
+       
+            firstCard = undefined
+            secondCard = undefined
+         
+        }
+}
+
+function delayFlipUnmatched (firstCard, secondCard) {
+    intervalFlip = setInterval(function(){
+        firstCard.classList.remove('is-flipped')
+        secondCard.classList.remove('is-flipped')
+        clearInterval(intervalFlip)
+        
+    },1500)
+   
+}
+     
+
+toggleCards()

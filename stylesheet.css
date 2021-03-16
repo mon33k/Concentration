@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Swash&family=Source+Sans+Pro&display=swap');
+
+
 html {
     width: 100%;
     height: 100%;
@@ -5,11 +8,21 @@ html {
 
 body {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
     align-items: center;
     width: inherit;
     height: inherit;
+}
+
+.gameHeader {
+    font-family: 'Cherry Swash', cursive;
+}
+
+.description {
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 20px;
+    margin: 0;
 }
 
 .game-container {
@@ -22,26 +35,34 @@ body {
 
 .card {
     display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: grey;
-    padding: 30px;
+    background: transparent;
+    /* padding: 52px; */
     margin: 5px;    
     transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform-style: preserve-3d
+    transform-style: preserve-3d;
+    height: 167px;
+    width: 120px;
 }
 
 .frontCard {
-    display: flex;
     transform: rotateY(180deg);
     font-size: 40px;
     margin: 0px;
     padding: 0px;
-
+    position: absolute;
 }
 
 .backCard {
-    display: flex;
+    background-image: url('./symbols/cardBackImg.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    /* flex: 0 1 auto; */
+    height: 167px;
+    width: 120px;
     position: absolute;
-    font-size: 40px;
     margin: 0px;
     padding: 0px;
 }
@@ -55,3 +76,4 @@ div {
     backface-visibility: visible;
     background-color: green;
 }
+
