@@ -25,6 +25,11 @@ let secondCard;
 let intervalFlip;
 let intervalGameTime;
 
+//Timer to record users time 00:00:00
+let hours = 0;
+let mins = 0;
+let sec = 0;
+
 // Show curr num of moves a user made
 let usersMoves = 0;
 // Number of Matches
@@ -32,15 +37,28 @@ let matchesFound = 0;
 // have a timer to show how long it took until they won 
 let usersTime;
 
+// function startTimer() {
+     
+// }
+
 // function gameTimer() {
 //     usersTime = setInterval(function(){
+//         console.log("hurrrr", sec)
+//         sec += 1
+//         displayTime.innerHTML = `${sec}, hanhhhh`
+//     }, 1000)
 
-//     }, )
+  
 // }
 
 
+
 function toggleCards() {
+    // gameTimer()
   
+    updatedTime = new Date().getTime();
+    console.log(updatedTime)
+    
     allCards.forEach((card, i) => {
         card.addEventListener( 'click', function() {
            
